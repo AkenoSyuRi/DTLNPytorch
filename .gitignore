@@ -19,4 +19,7 @@ deploy_32k/build_arm_1106_linux
 deploy_32k/build_arm_linux
 deploy_32k/build_linux
 deploy_32k/third_party
+deploy_32k/model
+deploy_32k/depend
+
 
