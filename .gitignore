@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__
+bin
+ScriptModel
+dtln_p1_rk.pt
+dtln_p2_rk.pt
+dtlcnModel.py
+modules/dtlnModel_0519.py
+modules/dtlnModel_0520.py
+modules/dtlnModel_aec_Stateful.py
+modules/dtlnModel_aec.py
