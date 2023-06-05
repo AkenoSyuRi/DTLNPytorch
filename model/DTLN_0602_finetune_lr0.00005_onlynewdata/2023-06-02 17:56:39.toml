@@ -1,0 +1,44 @@
+[meta]
+seed = 42
+use_amp = false
+num_workers = 8
+pin_memory = true
+num_epochs = 60
+batch_size = 36
+samplerate = 32000
+finetune_clean_data_dirname = "/home/lizhinan/project/dataset/dns_fullband/myfinetune_datasets/clean_32k_train"
+finetune_noise_data_dirname = "/home/lizhinan/project/dataset/dns_fullband/myfinetune_datasets/noise_32k_wedo"
+initial_clean_data_dirname = "/home/lizhinan/project/dataset/dns_fullband/datasets/clean_32k"
+initial_noisy_data_dirname = "/home/lizhinan/project/dataset/dns_fullband/datasets/noisy_32k"
+how_many_finetune_h = 19
+how_many_initial_h = 1
+duration = 10
+save_model_dir = "/home/lizhinan/project/lightse/DTLNPytorch/models"
+experiment_name = "DTLN_0602_finetune_lr0.00005_onlynewdata"
+preload_model_path = "/home/lizhinan/project/lightse/DTLNPytorch/models/DTLN_0518_32k_train_200epochs/checkpoints/model_0200.pth"
+
+[audio]
+samplerate = 32000
+duration = 10
+
+[model]
+path = "modules.dtlnModel_ns.Pytorch_DTLN_stateful"
+
+[loss]
+method = "dtln-snr"
+
+[optimizer]
+lr = 5e-5
+
+[trainer]
+path = "modules.trainer.Trainer"
+
+[model.args]
+frameLength = 1024
+hopLength = 256
+hidden_size = 128
+encoder_size = 256
+
+[trainer.args]
+clip_grad_norm_ornot = true
+clip_grad_norm_value = 3

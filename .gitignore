@@ -9,3 +9,8 @@ modules/dtlnModel_0519.py
 modules/dtlnModel_0520.py
 modules/dtlnModel_aec_Stateful.py
 modules/dtlnModel_aec.py
+*.pth
+latest_model.tar
+!./model/DTLN_0531_si-snr_lr=0.002/checkpoints/model_0200.pth
+!./model/DTLN_0602_finetune_lr0.00005_onlynewdata/checkpoints/model_0042.pth
+!./model/DTLN_0603_npu_nonorm/checkpoints/model_0200.pth

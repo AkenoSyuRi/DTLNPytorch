@@ -1,0 +1,39 @@
+[meta]
+seed = 42
+use_amp = false
+num_workers = 8
+pin_memory = true
+num_epochs = 200
+batch_size = 128
+samplerate = 32000
+clean_data_dirname = "/home/lizhinan/project/dataset/dns_fullband/datasets/clean_32k"
+noisy_data_dirname = "/home/lizhinan/project/dataset/dns_fullband/datasets/noisy_32k"
+save_model_dir = "/home/lizhinan/project/lightse/DTLNPytorch/models"
+experiment_name = "DTLN_0531_si-snr_lr=0.002"
+preload_model_path = ""
+
+[audio]
+samplerate = 32000
+duration = 10
+
+[model]
+path = "modules.dtlnModel_ns.Pytorch_DTLN_stateful"
+
+[loss]
+method = "dtln-snr"
+
+[optimizer]
+lr = 0.002
+
+[trainer]
+path = "modules.trainer.Trainer"
+
+[model.args]
+frameLength = 1024
+hopLength = 256
+hidden_size = 128
+encoder_size = 256
+
+[trainer.args]
+clip_grad_norm_ornot = true
+clip_grad_norm_value = 3
