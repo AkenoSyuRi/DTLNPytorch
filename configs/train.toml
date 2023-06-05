@@ -1,0 +1,48 @@
+[meta]
+seed = 42 # random seed
+use_amp = false # use automatic mixed precision, it will benefits Tensor Core-enabled GPU (e.g. Volta, Turing, Ampere). 2-3X speedup
+num_workers = 4
+pin_memory = true 
+num_epochs = 200
+batch_size = 200
+samplerate = 16000
+train_list_path = "/home/lizhinan/project/lightse/DTLNPytorch/dataset/cleanlist0321.txt"
+noise_list_path = "/home/lizhinan/project/lightse/DTLNPytorch/dataset/noiselist0321.txt"
+rir_list_path = "/home/lizhinan/project/lightse/DTLNPytorch/dataset/rirlist.txt"
+# set experiment dir.
+save_model_dir = "/home/lizhinan/project/lightse/DTLNPytorch/models"
+experiment_name = "DTLN 0411 test_preloaded"
+# set preload model
+preload_model_path = "/home/lizhinan/project/lightse/DTLN_pytorch/pretrained/model.pth"
+
+
+
+
+
+[audio]
+target_dB = -25
+floatRange_dB = 10
+rir_prob = 0.2
+samplerate = 16000
+duration = 10
+
+
+[model]
+#path = "modules.dtlnModel_Stateful.DTLN_modelForNS_Stateful"
+path = "modules.dtlnModel_ns.Pytorch_DTLN_stateful"
+[model.args]
+frameLength = 512
+hopLength = 128
+# seperation kernel config
+hidden_size = 128
+
+
+[optimizer]
+lr = 0.005
+weight_decay = 1e-6
+
+[trainer]
+path = "modules.trainer.Trainer"
+[trainer.args]
+clip_grad_norm_ornot = true
+clip_grad_norm_value = 3

@@ -1,0 +1,32 @@
+[meta]
+seed = 42 # random seed
+use_amp = false # use automatic mixed precision, it will benefits Tensor Core-enabled GPU (e.g. Volta, Turing, Ampere). 2-3X speedup
+num_workers = 4
+pin_memory = true 
+num_epochs = 100
+batch_size = 128
+samplerate = 32000
+
+clean_data_dirname = "/home/lizhinan/project/dataset/dns_fullband/datasets/clean_32k"
+noisy_data_dirname = "/home/lizhinan/project/dataset/dns_fullband/datasets/noisy_32k"
+
+# set experiment dir.
+save_model_dir = "/home/lizhinan/project/lightse/DTLNPytorch/models"
+experiment_name = "DTLN_0518_32k_train"
+
+# set preload model
+
+[audio]
+samplerate = 32000
+duration = 10
+
+[model]
+path = "modules.dtlnModel_ns.Pytorch_DTLN_stateful"
+weight_path = ""
+[model.args]
+frameLength = 1024
+hopLength = 256
+# seperation kernel config
+hidden_size = 128
+
+
