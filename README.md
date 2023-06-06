@@ -189,7 +189,16 @@ python train_finetune.py
 作者原本只采用了[DNS-Challenge-master](https://github.com/microsoft/DNS-Challenge)中的提供的download-dns-challenge-4.sh中的read_speech中的十五个压缩包，所有噪声文件生成的200h的数据进行训练，结果发现对非稳态噪声的降噪能力还有所欠缺，因此对非稳态降噪方面进行深一步探究，也为了进一步适配目标设备芯片自带算法，仅录制了1h的噪声，后跟不同的speech组合生成20h的noisy语音进行对特定噪声的finetune。finetune策略采用20h的新数据， 以及1h的DNS的旧数据，具体可见[finetune日志](https://github.com/Plutoisme/DTLNPytorch/tree/main/model/DTLN_0602_finetune_lr0.00005_onlynewdata)。方案见效果对比如下:
 
 
-1.  
+1. 处理的语音对象，含不同的非稳态噪声  
+    ![input](images/input.png )
+
+2. [finetune前](https://github.com/Plutoisme/DTLNPytorch/tree/main/model/DTLN_0531_si-snr_lr%3D0.002)，部分DNS提供的数据训练出的模型，对部分非稳态噪声并没有效果:  
+    ![output](images/output.png)
+
+3. [finetune后，增加了自录1h的噪声数据，生成20h的noisy带噪语音训练](https://github.com/Plutoisme/DTLNPytorch/tree/main/model/DTLN_0602_finetune_lr0.00005_onlynewdata), 对该非稳态噪声有了抑制效果：
+    ![output](images/output_finetune.png)
+
+因此后续可以在配置文件中添加扩展，针对不同场景，不同设备加入数据增广，使得模型具有更好的适配性。
 
 
 ## Citing
@@ -204,5 +213,16 @@ python train_finetune.py
   pages={2477--2481},
   doi={10.21437/Interspeech.2020-2631},
   url={http://dx.doi.org/10.21437/Interspeech.2020-2631}
+}
+```
+
+DNS-Challenge:
+```
+@inproceedings{dubey2023icassp,
+  title={Deep Speech Enhancement Challenge at ICASSP 2023},
+  author={
+ Dubey, Harishchandra and Aazami, Ashkan and Gopal, Vishak and Naderi, Babak and Braun, Sebastian and  Cutler, Ross and Gamper, Hannes and Golestaneh, Mehrsa and Aichner, Robert},
+  booktitle={ICASSP},
+  year={2023}
 }
 ```
