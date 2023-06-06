@@ -75,6 +75,23 @@ python realtimeInfer_32k.py
 
 
 ## Demonstrate
+对./model/DTLN_0531_si-snr_lr==0.002下的模型，推理结果如下:
+1. 第一组  
+    输入音频:
+    ![第一组输入音频](images/1in.png "第一组输入音频")
+
+
+    输出音频:
+    ![第一组输出音频](images/1out.png "第一组输出音频")
+
+2. 第二组  
+    输入音频:
+    ![第二组输入音频](images/2in.png "第二组输入音频")
+
+
+    输出音频:
+    ![第二组输出音频](images/2out.png "第二组输出音频")
+
 
 ## Deploy on Arm32 CPU
 得益于NCNN， 以及前人所做的工作。个人亲测可以部署在Android，RK1106， RK1126的CPU上运行。
@@ -168,6 +185,11 @@ finetune需要配置一个预训练模型，这部分在./config/train_finetune.
 python train_finetune.py 
 ```
 即开启模型finetune任务。
+
+作者原本只采用了[DNS-Challenge-master](https://github.com/microsoft/DNS-Challenge)中的提供的download-dns-challenge-4.sh中的read_speech中的十五个压缩包，所有噪声文件生成的200h的数据进行训练，结果发现对非稳态噪声的降噪能力还有所欠缺，因此对非稳态降噪方面进行深一步探究，也为了进一步适配目标设备芯片自带算法，仅录制了1h的噪声，后跟不同的speech组合生成20h的noisy语音进行对特定噪声的finetune。finetune策略采用20h的新数据， 以及1h的DNS的旧数据，具体可见[finetune日志](https://github.com/Plutoisme/DTLNPytorch/tree/main/model/DTLN_0602_finetune_lr0.00005_onlynewdata)。方案见效果对比如下:
+
+
+1.  
 
 
 ## Citing
