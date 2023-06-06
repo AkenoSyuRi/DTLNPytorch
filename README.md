@@ -200,6 +200,12 @@ python train_finetune.py
 
 因此后续可以在配置文件中添加扩展，针对不同场景，不同设备加入数据增广，使得模型具有更好的适配性。
 
+## Some Tools
+有一些方便的小工具可以帮助你扩展实现一些功能，我将其存放在tools当中。  
+1. initial_model.py可以帮助你根据配置文件初始化一个示例类
+2. calculate_runtime.py可以帮助你评估模型算力以及参数量
+3. calculateTools.py中包含一些对音频处理的工具，在你需要自定义dataset时可能会提供到帮助，如控制音量，控制信噪比，采样固定长度等。
+
 
 ## Citing
 借鉴了[DTLN的Tensorflow->Pytorch转换及NCNN部署](https://github.com/lhwcv/DTLN_pytorch)，实现模型的NCNN部署，所使用的模型结构为了能和其代码对接，使用的是其模型结构(我自己写的转了移动端推理不对，后面直接用这位大佬的了)。
